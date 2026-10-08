@@ -176,7 +176,7 @@ function doku_payment_notification()
 
     if (strtoupper($transactionStatus) === 'SUCCESS') {
         // Eksekusi aktivasi user / voucher di MikroTik RouterOS v7
-        $user = ORM::for_table('tbl_customers')->where('id', $trx->customer_id)->find_one();
+        $userId = $trx->user_id ?? 0; $user = ORM::for_table('tbl_customers')->where('id', $userId)->find_one();
         $plan = ORM::for_table('tbl_plans')->where('id', $trx->plan_id)->find_one();
         $router = ORM::for_table('tbl_routers')->where('name', $trx->routers)->find_one();
 
