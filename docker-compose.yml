@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    image: phpnuxbill-docker-app
+    container_name: phpnuxbill_app
+    restart: unless-stopped
+    ports:
+      - "8086:80"
+    volumes:
+      - ./app:/var/www/html
+    environment:
+      - TZ=Asia/Jakarta
+    depends_on:
+      - db
+    networks:
+      - nuxbill_network
+
+  db:
+    image: mariadb:10.11
+    container_name: phpnuxbill_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: RootNuxBillPass2026!
+      MYSQL_DATABASE: nuxbill_db
+      MYSQL_USER: nuxbill_user
+      MYSQL_PASSWORD: NuxBillSecure2026!
+      TZ: Asia/Jakarta
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - nuxbill_network
+
+volumes:
+  db_data:
+
+networks:
+  nuxbill_network:
+    driver: bridge

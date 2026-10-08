@@ -1,0 +1,19 @@
+# Environment & secrets
+.env
+config.php
+*.key
+*.pem
+
+# Data directories
+db_data/
+system/cache/
+ui/ui_c/
+
+# Logs
+*.log
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
