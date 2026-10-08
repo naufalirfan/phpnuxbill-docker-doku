@@ -1,0 +1,12 @@
+<?php
+// Dynamic APP_URL detects Cloudflare Tunnel HTTPS or direct LAN access
+$proto = (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') || (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') || (isset($_SERVER['HTTP_CF_VISITOR']) && strpos($_SERVER['HTTP_CF_VISITOR'], 'https') !== false) ? 'https' : 'http';
+$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'billing.naufalputra.my.id';
+define('APP_URL', $proto . '://' . $host);
+
+$db_host = 'db';
+$db_port = '3306';
+$db_user = 'nuxbill_user';
+$db_pass = 'YourSecureDbPassword123!';
+$db_name = 'nuxbill_db';
+$_app_stage = 'Live';
